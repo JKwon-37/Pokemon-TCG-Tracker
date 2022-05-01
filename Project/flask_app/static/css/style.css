@@ -1,0 +1,8 @@
+a:hover {
+    background-color: rgb(255, 225, 149);
+    border-radius: 10px;
+}
+
+.text-gray {
+    color: gray;
+}

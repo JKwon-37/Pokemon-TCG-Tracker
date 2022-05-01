@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <title>Login and Sign Up</title>
+</head>
+<body>
+     <!-- User/signin -->
+     <div class="d-flex justify-content-between align-items-center">
+        <div class="m-2 d-flex justify-content-center">
+            <img src="{{url_for('static', filename='css/img/Pokecard_logo.png')}}" alt="">
+        </div>
+        <!-- Navbar-->
+    <div class="container bg-dark rounded-pill">
+        <ul class="nav justify-content-around text-decoration-none fs-4">
+            <li class="nav-item">
+                <a href="/" class="nav-link text-white :hover">Home</a>
+            </li>
+            <li class="nav-item">
+                <a href="/browse" class="nav-link text-white :hover">Browse Sets</a>
+            </li>
+        </ul>
+    </div>  
+        {% if 'loginid' in session %}
+            <div class="m-2 text-end">
+                <p class="m-2 fs-5">Welcome {{user.full_name}}!</p>
+                <a class="m-2 btn btn-secondary" href="/logout">Log out</a>
+            </div>
+            {% else %}
+            <div class="m-2">
+                <a class="" href="/">Home</a>
+            </div>
+        {%  endif %}
+    </div>
+        
+    <div class="d-flex justify-content-around">
+        <div class="row">
+            <form action="/register" method="post" class="">
+                <h2 class="text-center">Register</h2>
+                <div class="">
+                    <label for="first_name">First Name:</label>
+                    <input type="text" name="first_name"  class="form-control">
+                    {% for message in get_flashed_messages(category_filter=["err_users_first_name"]) %}
+                    <p class="alert alert-danger">{{ message }}</p>
+                    {% endfor %}
+                </div>
+                <div class="">
+                    <label for="last_name">Last Name:</label>
+                    <input type="text" name="last_name"  class="form-control">
+                    {% for message in get_flashed_messages(category_filter=["err_users_last_name"]) %}
+                    <p class="alert alert-danger">{{ message }}</p>
+                    {% endfor %}
+                </div>
+                <div class="">
+                    <label for="email">Email:</label>
+                    <input type="text" name="email"  class="form-control">
+                    {% for message in get_flashed_messages(category_filter=["err_users_email"]) %}
+                    <p class="alert alert-danger">{{ message }}</p>
+                    {% endfor %}
+                </div>
+                <div class="">
+                    <label for="pw">Password:</label>
+                    <input type="text" name="pw"  class="form-control">
+                    {% for message in get_flashed_messages(category_filter=["err_users_pw"]) %}
+                    <p class="alert alert-danger">{{ message }}</p>
+                    {% endfor %}
+                </div>
+                <div class="">
+                    <label for="confirm_pw">Confirm password:</label>
+                    <input type="text" name="confirm_pw"  class="form-control">
+                    {% for message in get_flashed_messages(category_filter=["err_users_confirm_pw"]) %}
+                    <p class="alert alert-danger">{{ message }}</p>
+                    {% endfor %}
+                </div>
+                <input type="submit" value="Register" class="btn btn-success">
+            </form>
+        </div>
+        <div class="row">
+            <form action="/login" method="post" class="">
+                <h2 class="text-center">Login</h2>
+                <div class="">
+                    <label for="email">Email:</label>
+                    <input type="text" name="email"  class="form-control">
+                    {% for message in get_flashed_messages(category_filter=["err_users_email_login"]) %}
+                    <p class="alert alert-danger">{{ message }}</p>
+                    {% endfor %}
+                </div>
+                <div class="">
+                    <label for="pw">Password:</label>
+                    <input type="text" name="pw"  class="form-control">
+                    {% for message in get_flashed_messages(category_filter=["err_users_pw_login"]) %}
+                    <p class="alert alert-danger">{{ message }}</p>
+                    {% endfor %}
+                </div>
+                <input type="submit" value="Login" class="btn btn-success">
+            </form>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+</body>
+</html>
